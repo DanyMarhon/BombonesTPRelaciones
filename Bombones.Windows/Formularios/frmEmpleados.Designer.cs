@@ -55,12 +55,12 @@
             botonUltimo = new Button();
             panelNavegacion = new Panel();
             panelGrilla = new Panel();
-            colDireccion = new DataGridViewTextBoxColumn();
-            colFechaContratacion = new DataGridViewTextBoxColumn();
-            colApellido = new DataGridViewTextBoxColumn();
-            colNombre = new DataGridViewTextBoxColumn();
-            colId = new DataGridViewTextBoxColumn();
             dgvDatos = new DataGridView();
+            colId = new DataGridViewTextBoxColumn();
+            colNombre = new DataGridViewTextBoxColumn();
+            colApellido = new DataGridViewTextBoxColumn();
+            colFechaContratacion = new DataGridViewTextBoxColumn();
+            colDireccion = new DataGridViewTextBoxColumn();
             toolStrip1.SuspendLayout();
             panelNavegacion.SuspendLayout();
             panelGrilla.SuspendLayout();
@@ -114,6 +114,7 @@
             tsbFiltrar.Size = new Size(44, 59);
             tsbFiltrar.Text = "Filtrar";
             tsbFiltrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbFiltrar.Click += tsbFiltrar_Click;
             // 
             // tsbActualizar
             // 
@@ -324,46 +325,6 @@
             panelGrilla.Size = new Size(800, 388);
             panelGrilla.TabIndex = 15;
             // 
-            // colDireccion
-            // 
-            colDireccion.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colDireccion.HeaderText = "Dirección";
-            colDireccion.Name = "colDireccion";
-            colDireccion.ReadOnly = true;
-            // 
-            // colFechaContratacion
-            // 
-            colFechaContratacion.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            colFechaContratacion.HeaderText = "Fecha Contratación";
-            colFechaContratacion.MinimumWidth = 150;
-            colFechaContratacion.Name = "colFechaContratacion";
-            colFechaContratacion.ReadOnly = true;
-            colFechaContratacion.Width = 150;
-            // 
-            // colApellido
-            // 
-            colApellido.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            colApellido.HeaderText = "Apellido";
-            colApellido.Name = "colApellido";
-            colApellido.ReadOnly = true;
-            colApellido.Width = 76;
-            // 
-            // colNombre
-            // 
-            colNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            colNombre.HeaderText = "Nombre";
-            colNombre.Name = "colNombre";
-            colNombre.ReadOnly = true;
-            colNombre.Width = 76;
-            // 
-            // colId
-            // 
-            colId.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            colId.HeaderText = "Id";
-            colId.Name = "colId";
-            colId.ReadOnly = true;
-            colId.Width = 42;
-            // 
             // dgvDatos
             // 
             dgvDatos.AllowUserToAddRows = false;
@@ -379,6 +340,46 @@
             dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDatos.Size = new Size(800, 388);
             dgvDatos.TabIndex = 2;
+            // 
+            // colId
+            // 
+            colId.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            colId.HeaderText = "Id";
+            colId.Name = "colId";
+            colId.ReadOnly = true;
+            colId.Width = 42;
+            // 
+            // colNombre
+            // 
+            colNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            colNombre.HeaderText = "Nombre";
+            colNombre.Name = "colNombre";
+            colNombre.ReadOnly = true;
+            colNombre.Width = 76;
+            // 
+            // colApellido
+            // 
+            colApellido.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            colApellido.HeaderText = "Apellido";
+            colApellido.Name = "colApellido";
+            colApellido.ReadOnly = true;
+            colApellido.Width = 76;
+            // 
+            // colFechaContratacion
+            // 
+            colFechaContratacion.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            colFechaContratacion.HeaderText = "Fecha Contratación";
+            colFechaContratacion.MinimumWidth = 150;
+            colFechaContratacion.Name = "colFechaContratacion";
+            colFechaContratacion.ReadOnly = true;
+            colFechaContratacion.Width = 150;
+            // 
+            // colDireccion
+            // 
+            colDireccion.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colDireccion.HeaderText = "Dirección";
+            colDireccion.Name = "colDireccion";
+            colDireccion.ReadOnly = true;
             // 
             // frmEmpleados
             // 

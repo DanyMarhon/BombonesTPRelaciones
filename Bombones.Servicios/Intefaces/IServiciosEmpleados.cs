@@ -16,6 +16,6 @@ namespace Bombones.Servicios.Intefaces
         List<EmpleadoListDto> GetLista(int currentPage, int pageSize, Func<EmpleadoListDto, bool>? filter = null);
         void Guardar(Empleado empleado);
         Empleado? GetEmpleadoPorId(int empleadoId);
-        int GetCantidad();
+        int GetCantidad(Func<EmpleadoListDto, bool>? filter = null);
     }
 }

@@ -35,11 +35,12 @@ namespace Bombones.Servicios.Servicios
             throw new NotImplementedException();
         }
 
-        public int GetCantidad()
+        public int GetCantidad(Func<EmpleadoListDto, bool>? filter = null)
         {
             using (var conn = new SqlConnection(_cadena))
             {
-                return _repositorioEmpleados.GetCantidad(conn);
+                conn.Open();
+                return _repositorioEmpleados!.GetCantidad(conn, filter);
             }
         }
 
@@ -56,7 +57,6 @@ namespace Bombones.Servicios.Servicios
                 return _repositorioEmpleados.GetLista(conn, currentPage, pageSize, filter);
             }
         }
-
 
         public void Guardar(Empleado empleado)
         {

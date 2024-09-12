@@ -11,13 +11,14 @@ namespace Bombones.Windows.Formularios
 
         private readonly IServiceProvider? _serviceProvider;
         private readonly IServiciosEmpleados? _servicio;
-        private List<EmpleadoListDto>? lista;
+        private List<EmpleadoListDto>? lista = null!;
 
         private int currentPage = 1;//pagina actual
         private int totalPages = 0;//total de paginas
         private int pageSize = 10;//registros por página
         private int totalRecords = 0;//cantidad de registros
 
+        private Func<EmpleadoListDto, bool>? filter = null;
         public frmEmpleados(IServiceProvider? serviceProvider)
         {
             InitializeComponent();
@@ -66,16 +67,25 @@ namespace Bombones.Windows.Formularios
 
         private void tsbActualizar_Click(object sender, EventArgs e)
         {
-
+            filter = null;
+            currentPage = 1;
+            tsbFiltrar.Enabled = true;
+            tsbFiltrar.BackColor = SystemColors.Control;
+            RecargarGrilla();
         }
 
         private void frmEmpleados_Load(object sender, EventArgs e)
         {
+            RecargarGrilla();
+        }
+
+        private void RecargarGrilla()
+        {
             try
             {
-                totalRecords = _servicio!.GetCantidad();
+                totalRecords = _servicio!.GetCantidad(filter);
                 totalPages = (int)Math.Ceiling((decimal)totalRecords / pageSize);
-                LoadData();
+                LoadData(filter);
             }
             catch (Exception)
             {
@@ -86,13 +96,13 @@ namespace Bombones.Windows.Formularios
 
         private void tsbCerrar_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
         private void btnPrimero_Click(object sender, EventArgs e)
         {
             currentPage = 1;
-            LoadData();
+            LoadData(filter);
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
@@ -100,14 +110,14 @@ namespace Bombones.Windows.Formularios
             if (currentPage > 1)
             {
                 currentPage--;
-                LoadData();
+                LoadData(filter);
             }
         }
 
         private void btnUltimo_Click(object sender, EventArgs e)
         {
             currentPage = totalPages;
-            LoadData();
+            LoadData(filter);
         }
 
         private void btnSiguiente_Click(object sender, EventArgs e)
@@ -115,28 +125,45 @@ namespace Bombones.Windows.Formularios
             if (currentPage < totalPages)
             {
                 currentPage++;
-                LoadData();
+                LoadData(filter);
             }
         }
 
         private void cboPaginas_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentPage = int.Parse(cboPaginas.Text);
-            LoadData();
+            LoadData(filter);
         }
 
-        private void LoadData()
+        private void LoadData(Func<EmpleadoListDto, bool>? filter = null)
         {
             try
             {
-                lista = _servicio!.GetLista(currentPage, pageSize);
-                MostrarDatosEnGrilla(lista);
-                if (cboPaginas.Items.Count != totalPages)
+                lista = _servicio!.GetLista(currentPage, pageSize, filter);
+                if (lista.Count > 0)
                 {
-                    CombosHelper.CargarComboPaginas(ref cboPaginas, totalPages);
+                    MostrarDatosEnGrilla(lista);
+                    if (cboPaginas.Items.Count != totalPages)
+                    {
+                        CombosHelper.CargarComboPaginas(ref cboPaginas, totalPages);
+                    }
+                    txtCantidadPaginas.Text = totalPages.ToString();
+                    cboPaginas.SelectedIndexChanged -= cboPaginas_SelectedIndexChanged;
+                    cboPaginas.SelectedIndex = currentPage == 1 ? 0 : currentPage - 1;
+                    cboPaginas.SelectedIndexChanged += cboPaginas_SelectedIndexChanged;
+
                 }
-                txtCantidadPaginas.Text = totalPages.ToString();
-                cboPaginas.SelectedIndex = currentPage == 1 ? 0 : currentPage - 1;
+                else
+                {
+                    MessageBox.Show("No se encontraron registros!!!", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No hay registros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    currentPage = 1;
+                    filter = null;
+                    tsbFiltrar.Enabled = true;
+                    tsbFiltrar.BackColor = SystemColors.Control;
+                    RecargarGrilla();
+                }
             }
             catch (Exception)
             {
@@ -157,6 +184,45 @@ namespace Bombones.Windows.Formularios
                     GridHelper.AgregarFila(r, dgvDatos);
                 }
 
+            }
+        }
+
+        private void tsbFiltrar_Click(object sender, EventArgs e)
+        {
+            frmFiltroTexto frm = new frmFiltroTexto() { Text = "Ingresar texto para buscar por apellido" };
+            DialogResult dr = frm.ShowDialog(this);
+            try
+            {
+                var textoFiltro = frm.GetTexto();
+                if (textoFiltro is null || textoFiltro == string.Empty)
+                {
+                    return;
+                }
+                filter = e => e.Apellido.ToUpper()
+                    .Contains(textoFiltro.ToUpper());
+                totalRecords = _servicio!.GetCantidad(filter);
+                currentPage = 1;
+                if (totalRecords > 0)
+                {
+                    totalPages = (int)Math.Ceiling((decimal)totalRecords / pageSize);
+                    tsbFiltrar.Enabled = false;
+                    tsbFiltrar.BackColor = Color.Orange;
+
+                    LoadData(filter);
+
+                }
+                else
+                {
+
+                    MessageBox.Show("No se encontraron registros!!!", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    filter = null;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

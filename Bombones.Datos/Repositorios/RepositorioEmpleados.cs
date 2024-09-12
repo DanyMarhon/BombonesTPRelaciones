@@ -35,10 +35,13 @@ namespace Bombones.Datos.Repositorios
 
         public int GetCantidad(SqlConnection conn, Func<EmpleadoListDto, bool>? filter = null, SqlTransaction? tran = null)
         {
-            var selectQuery = "SELECT COUNT(*) FROM Empleados";
-            List<string> conditions = new List<string>();
-
-            return conn.ExecuteScalar<int>(selectQuery);
+            var selectQuery = @"SELECT * FROM Empleados";
+            var query = conn.Query<EmpleadoListDto>(selectQuery).ToList();
+            if (filter != null)
+            {
+                query = query.Where(filter).ToList();
+            }
+            return query.Count;
         }
 
         public Empleado? GetEmpleadoPorId(int empleadoId, SqlConnection conn)
@@ -70,37 +73,13 @@ namespace Bombones.Datos.Repositorios
                            LEFT JOIN Direcciones d ON e.DireccionId = d.DireccionId
                            LEFT JOIN Paises p ON d.PaisId = p.PaisId
                            LEFT JOIN ProvinciasEstados pe ON d.ProvinciaEstadoId = pe.ProvinciaEstadoId
-                           LEFT JOIN Ciudades ci ON d.CiudadId = ci.CiudadId"; 
+                           LEFT JOIN Ciudades ci ON d.CiudadId = ci.CiudadId";
 
-            var lista = new List<EmpleadoListDto>();
-            conn.Query<Empleado, DireccionListDto, EmpleadoListDto>
-                (selectQuery,
-                    (empleado, direccion) =>
-                    {
-                        var empleadoDto = lista
-                            .FirstOrDefault(e => e.EmpleadoId == empleado.EmpleadoId);
-                        if (empleadoDto is null)
-                        {
-                            empleadoDto = new EmpleadoListDto
-                            {
-                                EmpleadoId = empleado.EmpleadoId,
-                                Nombre = empleado.Nombre,
-                                Apellido = empleado.Apellido,
-                                FechaContratacion = empleado.FechaContratacion,
-                                Direccion = $"{direccion.Calle} - {direccion.Altura} - {direccion.Ciudad} - {direccion.ProvinciaEstado} - {direccion.Pais}"
-                            };
-                            lista.Add(empleadoDto);
-                        }
-                        return empleadoDto;
-                    },
-                    splitOn: "EmpleadoId, Calle"
-                );
-
+            var lista = conn.Query<EmpleadoListDto>(selectQuery).ToList();
             if (filter != null)
             {
                 lista = lista.Where(filter).ToList();
             }
-
             return lista.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
         }
     }

@@ -62,24 +62,34 @@ namespace Bombones.Datos.Repositorios
         public List<EmpleadoListDto> GetLista(SqlConnection conn, int currentPage, int pageSize, Func<EmpleadoListDto, bool>? filter = null, SqlTransaction? tran = null)
         {
             var selectQuery =
+                @"SELECT e.EmpleadoId, e.Nombre, e.Apellido, e.FechaContratacion, 
+           d.DireccionId, d.Calle, d.Altura, 
+           ci.NombreCiudad AS Ciudad,
+           pe.NombreProvinciaEstado AS ProvinciaEstado, 
+           p.NombrePais AS Pais
+          FROM Empleados e
+          LEFT JOIN Direcciones d ON e.DireccionId = d.DireccionId
+          LEFT JOIN Paises p ON d.PaisId = p.PaisId
+          LEFT JOIN ProvinciasEstados pe ON d.ProvinciaEstadoId = pe.ProvinciaEstadoId
+          LEFT JOIN Ciudades ci ON d.CiudadId = ci.CiudadId";
 
-                @"SELECT e.EmpleadoId, e.Nombre, e.Apellido, e.FechaContratacion, e.DireccionId,
-                           d.Calle, 
-                           d.Altura, 
-                           ci.NombreCiudad AS Ciudad,
-                           pe.NombreProvinciaEstado AS ProvinciaEstado, 
-                           p.NombrePais AS Pais
-                           FROM Empleados e
-                           LEFT JOIN Direcciones d ON e.DireccionId = d.DireccionId
-                           LEFT JOIN Paises p ON d.PaisId = p.PaisId
-                           LEFT JOIN ProvinciasEstados pe ON d.ProvinciaEstadoId = pe.ProvinciaEstadoId
-                           LEFT JOIN Ciudades ci ON d.CiudadId = ci.CiudadId";
+            var lista = conn.Query<EmpleadoListDto, DireccionListDto, EmpleadoListDto>(
+                selectQuery,
+                (empleado, direccion) =>
+                {
+                    // Concatenacion de los campos relacionados con la dirección
+                    empleado.Direccion = $"{direccion.Calle} - {direccion.Altura} - {direccion.Ciudad} - {direccion.ProvinciaEstado} - {direccion.Pais}";
+                    return empleado;
+                },
+                splitOn: "DireccionId",  // Punto de split
+                transaction: tran
+            ).ToList();
 
-            var lista = conn.Query<EmpleadoListDto>(selectQuery).ToList();
             if (filter != null)
             {
                 lista = lista.Where(filter).ToList();
             }
+
             return lista.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
         }
     }

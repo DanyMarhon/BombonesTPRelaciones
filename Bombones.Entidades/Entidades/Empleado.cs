@@ -15,6 +15,6 @@ namespace Bombones.Entidades.Entidades
         public string FechaContratacion { get; set; }
 
         // Relacion
-        public List<Direccion> EmpleadoDireccion { get; set; } = new List<Direccion>();
+        public List<Direccion> Direccion { get; set; } = new List<Direccion>();
     }
 }

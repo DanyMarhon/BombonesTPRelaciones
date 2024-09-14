@@ -9,12 +9,12 @@ namespace Bombones.Entidades.Entidades
     public class Empleado
     {
         public int EmpleadoId { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
+        public string? Nombre { get; set; }
+        public string? Apellido { get; set; }
 
-        public string FechaContratacion { get; set; }
+        public DateTime FechaContratacion { get; set; }
 
         // Relacion
-        public List<Direccion> Direccion { get; set; } = new List<Direccion>();
+        public Direccion? Direccion { get; set; }
     }
 }

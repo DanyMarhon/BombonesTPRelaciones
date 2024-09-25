@@ -39,24 +39,24 @@ namespace Bombones.Windows.Formularios
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
 
-            //frmEmpleadosAE frm = new frmEmpleadosAE(_serviceProvider) { Text = "Agregar Empleado" };
-            //DialogResult dr = frm.ShowDialog(this);
-            //if (dr == DialogResult.Cancel) return;
-            //Empleado? empleado = frm.GetCliente();
-            //if (empleado is null) return;
-            //try
-            //{
-            //    if (_servicio is null)
-            //    {
-            //        throw new ApplicationException("Dependencias no cargadas");
-            //    }
-            //    _servicio.Guardar(cliente);
-            //}
-            //catch (Exception)
-            //{
+            frmEmpleadosAE frm = new frmEmpleadosAE(_serviceProvider) { Text = "Agregar Empleado" };
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel) return;
+            Empleado? empleado = frm.GetEmpleado();
+            if (empleado is null) return;
+            try
+            {
+                if (_servicio is null)
+                {
+                    throw new ApplicationException("Dependencias no cargadas");
+                }
+                _servicio.Guardar(empleado);
+            }
+            catch (Exception)
+            {
 
-            //    throw;
-            //}
+                throw;
+            }
 
         }
 

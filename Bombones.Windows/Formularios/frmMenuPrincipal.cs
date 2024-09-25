@@ -93,5 +93,11 @@ namespace Bombones.Windows
             frmEmpleados frm = new frmEmpleados(_serviceProvider);
             frm.ShowDialog();
         }
+
+        private void btnProveedores_Click(object sender, EventArgs e)
+        {
+            frmProveedores frm = new frmProveedores(_serviceProvider);
+            frm.ShowDialog();
+        }
     }
 }

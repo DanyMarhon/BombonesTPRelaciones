@@ -44,6 +44,7 @@
             btnFormasDePago = new Button();
             btnFormasDeVenta = new Button();
             btnEmpleados = new Button();
+            btnProveedores = new Button();
             SuspendLayout();
             // 
             // btnRellenos
@@ -205,6 +206,16 @@
             btnEmpleados.UseVisualStyleBackColor = true;
             btnEmpleados.Click += btnEmpleados_Click;
             // 
+            // btnProveedores
+            // 
+            btnProveedores.Location = new Point(563, 35);
+            btnProveedores.Name = "btnProveedores";
+            btnProveedores.Size = new Size(139, 123);
+            btnProveedores.TabIndex = 0;
+            btnProveedores.Text = "Proveedores";
+            btnProveedores.UseVisualStyleBackColor = true;
+            btnProveedores.Click += btnProveedores_Click;
+            // 
             // frmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -221,6 +232,7 @@
             Controls.Add(btnPaises);
             Controls.Add(btnPermisos);
             Controls.Add(btnRoles);
+            Controls.Add(btnProveedores);
             Controls.Add(btnEmpleados);
             Controls.Add(btnNueces);
             Controls.Add(btnUsuarios);
@@ -251,5 +263,6 @@
         private Button btnFormasDePago;
         private Button btnFormasDeVenta;
         private Button btnEmpleados;
+        private Button btnProveedores;
     }
 }

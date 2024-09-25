@@ -46,7 +46,12 @@ namespace Bombones.Servicios.Servicios
 
         public Empleado? GetEmpleadoPorId(int empleadoId)
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(_cadena))
+            {
+                conn.Open();
+                var empleado = _repositorioEmpleados.GetEmpleadoPorId(empleadoId, conn);
+                return empleado;
+            }
         }
 
         public List<EmpleadoListDto> GetLista(int currentPage, int pageSize, Func<EmpleadoListDto, bool>? filter = null)

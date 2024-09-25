@@ -270,6 +270,7 @@
             btnOk.Text = "Ok";
             btnOk.TextImageRelation = TextImageRelation.ImageAboveText;
             btnOk.UseVisualStyleBackColor = true;
+            btnOk.Click += btnOk_Click_1;
             // 
             // errorProvider1
             // 

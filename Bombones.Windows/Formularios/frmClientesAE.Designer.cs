@@ -268,6 +268,7 @@
             btnAgregarDireccion.Text = "Agregar";
             btnAgregarDireccion.TextImageRelation = TextImageRelation.ImageAboveText;
             btnAgregarDireccion.UseVisualStyleBackColor = true;
+            btnAgregarDireccion.Click += btnAgregarDireccion_Click;
             // 
             // tabPage3
             // 

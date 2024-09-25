@@ -146,5 +146,10 @@ namespace Bombones.Windows.Formularios
         {
             return direccionTipoVm;
         }
+
+        private void btnOk_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

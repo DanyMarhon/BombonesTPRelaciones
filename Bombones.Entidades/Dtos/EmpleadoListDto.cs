@@ -15,6 +15,5 @@ namespace Bombones.Entidades.Dtos
         public string? FechaContratacion { get; set; }
         public string? Direccion { get; set; }
 
-
     }
 }

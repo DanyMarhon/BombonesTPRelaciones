@@ -102,6 +102,13 @@ namespace Bombones.Windows.Helpers
                     r.Cells[3].Value = empleado.FechaContratacion;
                     r.Cells[4].Value = empleado.Direccion;
                     break;
+                case ProveedorListDto proveedor:
+                    r.Cells[0].Value = proveedor.ProveedorId;
+                    r.Cells[1].Value = proveedor.NombreProveedor;
+                    r.Cells[2].Value = proveedor.Telefono;
+                    r.Cells[3].Value = proveedor.Email;
+                    r.Cells[4].Value = proveedor.Fabrica;
+                    break;
 
 
                 default:

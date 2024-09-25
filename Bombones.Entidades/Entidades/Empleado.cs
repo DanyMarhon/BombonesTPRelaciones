@@ -16,5 +16,6 @@ namespace Bombones.Entidades.Entidades
 
         // Relacion
         public Direccion? Direccion { get; set; }
+
     }
 }

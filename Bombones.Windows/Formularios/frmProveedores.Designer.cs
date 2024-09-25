@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProveedores));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProveedores));
             panelNavegacion = new Panel();
+            button5 = new Button();
+            button6 = new Button();
+            button7 = new Button();
+            button8 = new Button();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -44,6 +48,12 @@
             btnAnterior = new Button();
             btnPrimero = new Button();
             panelGrilla = new Panel();
+            dgvDatos = new DataGridView();
+            colId = new DataGridViewTextBoxColumn();
+            colProveedor = new DataGridViewTextBoxColumn();
+            colTelefono = new DataGridViewTextBoxColumn();
+            colMail = new DataGridViewTextBoxColumn();
+            colFabrica = new DataGridViewTextBoxColumn();
             toolStrip1 = new ToolStrip();
             tsbNuevo = new ToolStripButton();
             tsbBorrar = new ToolStripButton();
@@ -57,19 +67,10 @@
             toolStripSeparator3 = new ToolStripSeparator();
             tsbOrdenar = new ToolStripDropDownButton();
             tsbCerrar = new ToolStripButton();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
-            button8 = new Button();
-            dgvDatos = new DataGridView();
-            colId = new DataGridViewTextBoxColumn();
-            colProveedor = new DataGridViewTextBoxColumn();
-            colTelefono = new DataGridViewTextBoxColumn();
-            colMail = new DataGridViewTextBoxColumn();
             panelNavegacion.SuspendLayout();
             panelGrilla.SuspendLayout();
-            toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
+            toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // panelNavegacion
@@ -95,6 +96,46 @@
             panelNavegacion.Name = "panelNavegacion";
             panelNavegacion.Size = new Size(800, 100);
             panelNavegacion.TabIndex = 16;
+            // 
+            // button5
+            // 
+            button5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button5.Image = Properties.Resources.last_24px;
+            button5.Location = new Point(684, 25);
+            button5.Name = "button5";
+            button5.Size = new Size(75, 41);
+            button5.TabIndex = 36;
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            button6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button6.Image = Properties.Resources.next_24px;
+            button6.Location = new Point(603, 25);
+            button6.Name = "button6";
+            button6.Size = new Size(75, 41);
+            button6.TabIndex = 37;
+            button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            button7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button7.Image = Properties.Resources.previous_24px;
+            button7.Location = new Point(522, 25);
+            button7.Name = "button7";
+            button7.Size = new Size(75, 41);
+            button7.TabIndex = 38;
+            button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            button8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button8.Image = Properties.Resources.first_24px;
+            button8.Location = new Point(441, 25);
+            button8.Name = "button8";
+            button8.Size = new Size(75, 41);
+            button8.TabIndex = 39;
+            button8.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -220,6 +261,59 @@
             panelGrilla.Size = new Size(800, 388);
             panelGrilla.TabIndex = 15;
             // 
+            // dgvDatos
+            // 
+            dgvDatos.AllowUserToAddRows = false;
+            dgvDatos.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
+            dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colProveedor, colTelefono, colMail, colFabrica });
+            dgvDatos.Dock = DockStyle.Fill;
+            dgvDatos.Location = new Point(0, 0);
+            dgvDatos.MultiSelect = false;
+            dgvDatos.Name = "dgvDatos";
+            dgvDatos.ReadOnly = true;
+            dgvDatos.RowHeadersVisible = false;
+            dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDatos.Size = new Size(800, 388);
+            dgvDatos.TabIndex = 7;
+            // 
+            // colId
+            // 
+            colId.HeaderText = "Id";
+            colId.Name = "colId";
+            colId.ReadOnly = true;
+            colId.Visible = false;
+            // 
+            // colProveedor
+            // 
+            colProveedor.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colProveedor.HeaderText = "Proveedor";
+            colProveedor.Name = "colProveedor";
+            colProveedor.ReadOnly = true;
+            // 
+            // colTelefono
+            // 
+            colTelefono.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colTelefono.HeaderText = "Teléfono";
+            colTelefono.Name = "colTelefono";
+            colTelefono.ReadOnly = true;
+            // 
+            // colMail
+            // 
+            colMail.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colMail.HeaderText = "Mail";
+            colMail.Name = "colMail";
+            colMail.ReadOnly = true;
+            // 
+            // colFabrica
+            // 
+            colFabrica.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colFabrica.HeaderText = "Fabrica";
+            colFabrica.Name = "colFabrica";
+            colFabrica.ReadOnly = true;
+            // 
             // toolStrip1
             // 
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbNuevo, tsbBorrar, tsbEditar, toolStripSeparator1, tsbBuscar, tsbFiltrar, tsbActualizar, toolStripSeparator2, tsbImprimir, toolStripSeparator3, tsbOrdenar, tsbCerrar });
@@ -238,6 +332,7 @@
             tsbNuevo.Size = new Size(46, 59);
             tsbNuevo.Text = "Nuevo";
             tsbNuevo.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbNuevo.Click += tsbNuevo_Click;
             // 
             // tsbBorrar
             // 
@@ -334,92 +429,6 @@
             tsbCerrar.Text = "Cerrar";
             tsbCerrar.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
-            // button5
-            // 
-            button5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button5.Image = Properties.Resources.last_24px;
-            button5.Location = new Point(684, 25);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 41);
-            button5.TabIndex = 36;
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            button6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button6.Image = Properties.Resources.next_24px;
-            button6.Location = new Point(603, 25);
-            button6.Name = "button6";
-            button6.Size = new Size(75, 41);
-            button6.TabIndex = 37;
-            button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            button7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button7.Image = Properties.Resources.previous_24px;
-            button7.Location = new Point(522, 25);
-            button7.Name = "button7";
-            button7.Size = new Size(75, 41);
-            button7.TabIndex = 38;
-            button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            button8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button8.Image = Properties.Resources.first_24px;
-            button8.Location = new Point(441, 25);
-            button8.Name = "button8";
-            button8.Size = new Size(75, 41);
-            button8.TabIndex = 39;
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // dgvDatos
-            // 
-            dgvDatos.AllowUserToAddRows = false;
-            dgvDatos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
-            dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colProveedor, colTelefono, colMail });
-            dgvDatos.Dock = DockStyle.Fill;
-            dgvDatos.Location = new Point(0, 0);
-            dgvDatos.MultiSelect = false;
-            dgvDatos.Name = "dgvDatos";
-            dgvDatos.ReadOnly = true;
-            dgvDatos.RowHeadersVisible = false;
-            dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDatos.Size = new Size(800, 388);
-            dgvDatos.TabIndex = 7;
-            // 
-            // colId
-            // 
-            colId.HeaderText = "Id";
-            colId.Name = "colId";
-            colId.ReadOnly = true;
-            colId.Visible = false;
-            // 
-            // colProveedor
-            // 
-            colProveedor.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colProveedor.HeaderText = "Proveedor";
-            colProveedor.Name = "colProveedor";
-            colProveedor.ReadOnly = true;
-            // 
-            // colTelefono
-            // 
-            colTelefono.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colTelefono.HeaderText = "Teléfono";
-            colTelefono.Name = "colTelefono";
-            colTelefono.ReadOnly = true;
-            // 
-            // colMail
-            // 
-            colMail.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colMail.HeaderText = "Mail";
-            colMail.Name = "colMail";
-            colMail.ReadOnly = true;
-            // 
             // frmProveedores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -430,12 +439,13 @@
             Controls.Add(toolStrip1);
             Name = "frmProveedores";
             Text = "frmProveedores";
+            Load += frmProveedores_Load;
             panelNavegacion.ResumeLayout(false);
             panelNavegacion.PerformLayout();
             panelGrilla.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvDatos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -478,5 +488,6 @@
         private DataGridViewTextBoxColumn colProveedor;
         private DataGridViewTextBoxColumn colTelefono;
         private DataGridViewTextBoxColumn colMail;
+        private DataGridViewTextBoxColumn colFabrica;
     }
 }
